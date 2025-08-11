@@ -1,14 +1,20 @@
 import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+
+
 
 @Controller('cars')
 export class AppController {
+  [x: string]: any;
   
-  constructor(private readonly appService: AppService) {}
 
-  @Get()
-  getSaludo(): string {
-    const nombre: string = "Brandre"; 
-    return `Este es el Response para: ${nombre}`
-  }
+
+  // constructor(private readonly brandService: BrandsService) {}
+
+
+
+  // @Get()
+  // getSaludo(): string {
+  //   const nombre: string = "Brandre"; 
+  //   return `Este es el Response para: ${nombre}`
+  // }
 }

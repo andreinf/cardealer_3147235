@@ -1,31 +1,26 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { BrandsService } from './brands.service';
+import { UserService } from './user.service';
 
 
-@Controller('brands')
-export class BrandsController {
+@Controller('User')
+export class UserController {
  
-  constructor(private readonly brandsService: BrandsService) {} 
-
-  //inyeccion de dependencias:
-  //inyectar un componente para uso de otro
-  //sin tener que instanciarlo
- 
+  constructor(private readonly userService: UserService) {} 
 
   @Post()
   create(@Body() body){
-    return this.brandsService.create(body);
+    return this.userService.create(body);
   }
 
   @Get()
   findAll() {
-    return this.brandsService.findAll(); ;
+    return this.userService.findAll(); ;
   }
 //Consultar un resource por id 
 //una brand
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.brandsService.findOne(+id);
+    return this.userService.findOne(+id);
   }
 
   @Patch(':id')
@@ -39,7 +34,7 @@ export class BrandsController {
     return {
       "success" : true,
       "mensaje" : this.
-                  brandsService
+                  userService
                   .remove(+id)
     }
   }

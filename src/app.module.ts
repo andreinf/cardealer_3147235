@@ -1,14 +1,15 @@
+// app.module.ts
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CustomersModule } from './customers/customers.module';
 import { VendorsModule } from './vendors/vendors.module';
-import { VendorsController } from './vendors/vendors.controller';
 import { BrandsModule } from './brands/brands.module';
+import { UserModule } from './user/user.module';
 
 @Module({
-  imports: [CustomersModule, VendorsModule, BrandsModule],
-  controllers: [AppController, VendorsController],
+  imports: [VendorsModule, BrandsModule, UserModule, CustomersModule],
+  controllers: [AppController], // Solo el controlador principal aquí
   providers: [AppService],
 })
 export class AppModule {}

@@ -1,41 +1,39 @@
 import { Injectable } from "@nestjs/common";
-import { Brand } from "./entities/brand.entity";
-
+import { User } from "./entities/user.entity";
 
 @Injectable()
-export class BrandsService {
-
-    //private solo se puede usar al interior de la clase con this
-    
-    private  brands: Brand[] = [
+export class UserService {
+    private user: User[] = [
         {
             id: 1,
-            name: "Marussia",
-            description: "Marca de autos deportivos",
-            createdAt: new Date()
+            name: "Lorena",
+            email: "lore@gmail.com",
+            password: "123456",
+            typeUser: "Estudiante",
+            numberPhone: "123456789",
         },
         {
             id: 2,
-            name: "Ferrari",
-            description: "Marca de autos deportivos de lujo",   
-            createdAt: new Date()
+            name: "Julian",
+            email: "Jul@gmail.com",
+            password: "123456",
+            typeUser: "Docente",
+            numberPhone: "987654321",
         }
-    ]
+    ];
+    
 
-    //metodos:
-    //CRUD select * from brands
-    //this: acceder a algo private en la clase
-    findAll() {
-        return this.brands;
+     findAll() {
+        return this.user;
     }
 
     //buscar en la brand por id
     findOne(id: number) {
 
 
-        let marca = this.brands.find(function(brand){
+        let marca = this.user.find(function(user){
             //si la encuentro la retorno
-            return brand.id === id;
+            return user.id === id;
         })
         
         return marca;
@@ -43,7 +41,7 @@ export class BrandsService {
      }
         //actualizar una brand//añadir al arreglo brands
         create(body) {
-            this.brands.push(body)
+            this.user.push(body)
             return body;
         }
 
@@ -51,7 +49,7 @@ export class BrandsService {
         remove(id: number) {
             //filter : es para retornar un nuevo arreglo
             //elementos que cumplan con la condicional
-            this.brands = this.brands.filter(
+            this.user = this.user.filter(
                 function(brand){
                     return brand.id !== id;
                 }
