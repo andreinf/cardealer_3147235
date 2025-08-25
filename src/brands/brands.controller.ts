@@ -19,7 +19,7 @@ export class BrandsController {
 
   @Get()
   findAll() {
-    return this.brandsService.findAll(); ;
+    return this.brandsService.findAll(); 
   }
 //Consultar un resource por id 
 //una brand

@@ -1,62 +1,27 @@
 import { Injectable } from "@nestjs/common";
 import { Brand } from "./entities/brand.entity";
-
+import { PrismaService } from "src/prisma/prisma.service";
 
 @Injectable()
 export class BrandsService {
+  constructor(private prisma: PrismaService) {}
 
-    //private solo se puede usar al interior de la clase con this
-    
-    private  brands: Brand[] = [
-        {
-            id: 1,
-            name: "Marussia",
-            description: "Marca de autos deportivos",
-            createdAt: new Date()
-        },
-        {
-            id: 2,
-            name: "Ferrari",
-            description: "Marca de autos deportivos de lujo",   
-            createdAt: new Date()
-        }
-    ]
+  //private solo se puede usar al interior de la clase con this
 
-    //metodos:
-    //CRUD select * from brands
-    //this: acceder a algo private en la clase
-    findAll() {
-        return this.brands;
-    }
+  //metodos:
+  //CRUD select * from brands
+  //this: acceder a algo private en la clase
+  findAll() {
+    return this.prisma.brand.findMany()
+  }
 
-    //buscar en la brand por id
-    findOne(id: number) {
+  //buscar en la brand por id
+  findOne(id: number) {}
+  //actualizar una brand//añadir al arreglo brands
+  create(body) {}
 
-
-        let marca = this.brands.find(function(brand){
-            //si la encuentro la retorno
-            return brand.id === id;
-        })
-        
-        return marca;
-
-     }
-        //actualizar una brand//añadir al arreglo brands
-        create(body) {
-            this.brands.push(body)
-            return body;
-        }
-
-        //eliminar un elemento de arreglo de brands por id
-        remove(id: number) {
-            //filter : es para retornar un nuevo arreglo
-            //elementos que cumplan con la condicional
-            this.brands = this.brands.filter(
-                function(brand){
-                    return brand.id !== id;
-                }
-            )
-            return "Elemento eliminado"
-        }
-
- }
+  //eliminar un elemento de arreglo de brands por id
+  remove(id: number) {}
+  //filter : es para retornar un nuevo arreglo
+  //elementos que cumplan con la condicional
+}
