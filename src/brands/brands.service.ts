@@ -1,6 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { Brand } from "./entities/brand.entity";
 import { PrismaService } from "src/prisma/prisma.service";
+import { CreateBrandDto } from "./dto/create-brand.dto";
 
 @Injectable()
 export class BrandsService {
@@ -16,9 +17,22 @@ export class BrandsService {
   }
 
   //buscar en la brand por id
-  findOne(id: number) {}
+  async findOne(id: number) {
+      return await this.prisma.brand.findFirst({
+        where : {id:id}
+      })
+    }
+  
   //actualizar una brand//añadir al arreglo brands
-  create(body) {}
+  create(newBrand: CreateBrandDto) {
+    return this.prisma.brand.create({
+      data : {
+        name : newBrand.name
+        
+      }
+    })
+
+  }
 
   //eliminar un elemento de arreglo de brands por id
   remove(id: number) {}
